@@ -31,7 +31,7 @@
 
 package fr.soat;
 
-import fr.unice.i3s.sparks.docker.analyser.Main;
+import fr.unice.i3s.sparks.docker.core.conflicts.Main;
 import fr.unice.i3s.sparks.docker.core.conflicts.MalFormedImageException;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
@@ -51,16 +51,16 @@ public class MyBenchmark {
 
 
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    public void benchmark_docker_programming_17() throws InterruptedException, MalFormedImageException, IOException {
+    @BenchmarkMode(Mode.All)
+    public void benchmark_docker_programming_17() throws InterruptedException, IOException, MalFormedImageException {
         Main.main(null);
     }
 
 
     @Benchmark
-    @BenchmarkMode(Mode.AverageTime)
-    public void benchmark_fileReading() throws InterruptedException, MalFormedImageException, IOException {
-        String folderThatContainsDockerfiles = "/Users/benjaminbenni/Downloads/dockerfiles_26-11-16/";
+    @BenchmarkMode(Mode.All)
+    public void benchmark_fileReading() throws InterruptedException, IOException {
+        String folderThatContainsDockerfiles = Main.PATH_TO_DKF;
 
         File folder = new File(folderThatContainsDockerfiles);
         FilenameFilter textFilter = (dir, name) -> {
